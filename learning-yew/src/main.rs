@@ -13,6 +13,7 @@ fn App() -> Html {
 
     html! {
         <div>
+            <h1>{ "Counter" }</h1>
             <button {onclick}>{ "+1" }</button>
             <p>{ *counter }</p>
         </div>

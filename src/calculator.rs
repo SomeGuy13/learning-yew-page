@@ -2,22 +2,18 @@ use yew::prelude::*;
 
 #[function_component]
 pub fn Calculator() -> Html {
-    let state = use_state(|| 0);
-    let button_values :Vec<i32> = vec![1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-    let buttons = button_values.iter().map(|value :&i32| html! {
+    let state = use_state(|| String::new());
+    let button_values :Vec<char> = vec!['1', '2', '3', '/', '4', '5', '6', '*', '1', '2', '3', '-', '0', '.', '=', 'C'];
+    let buttons = button_values.iter().map(|value :&char| html! {
         <>
             <button onclick={Callback::from({
+                let str1 = state.clone();
+                let str2 = value.clone();
                 let state = state.clone();
-                let b_value = value.clone();
                 move |_| {
-                    let val = *state.clone();
-                    state.set(utils::add_val(&val, &b_value));
+                    state.set(format!("{}{}", *str1, str2));
                 }
-            })}>{format!("+{}", value)}</button>
-
-            if value % 3 == 0 {
-                <br />
-            }
+            })}>{format!("{}", value)}</button>
         </>
     });
     
@@ -25,7 +21,7 @@ pub fn Calculator() -> Html {
         <>
             <h1>{"Calculator"}</h1>
             <div>
-                { for buttons}
+                { for buttons }
             </div>
             <p>{"I know, not a calculator, but a work in progress."}</p>
             <h1>{format!("Result: {}", *state.clone())}</h1>

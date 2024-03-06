@@ -12,3 +12,6 @@ Cargo.lock
 
 # MSVC Windows builds of rustc generate these, which store debugging information
 *.pdb
+
+# Gets rebuilt every time, don't thing I'll need this in the future
+dist/
